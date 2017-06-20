@@ -20,12 +20,13 @@ class CreatePatientsTable extends Migration
             $table->foreign('surgeon_id')
                 ->references('id')->on('surgeons')
                 ->onDelete('cascade');
-            $table->timestamps();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone');
             $table->enum('gender', array_keys(Patient::$genders));
             $table->string('age');
+            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable();
         });
     }
 

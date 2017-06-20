@@ -15,9 +15,10 @@ class CreateSurgeonsTable extends Migration
     {
         Schema::create('surgeons', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('name');
             $table->string('email')->unique();
+            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable();
         });
     }
 
