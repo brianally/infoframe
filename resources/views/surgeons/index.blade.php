@@ -31,7 +31,6 @@
             <th>Created</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Patients</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -47,8 +46,6 @@
             <td>{{ $surgeon->created_at }}</td>
             <td>{{ $surgeon->name }}</td>
             <td>{{ $surgeon->email }}</td>
-            <!-- stupid Collection tricks -->
-            <td>{{ implode( ', ', $surgeon->patients->pluck('name')->toArray() ) }}</td>
             <td>
               <a class="btn btn-default"
               	href="{{ route('surgeons.show', $surgeon->id) }}">View</a>

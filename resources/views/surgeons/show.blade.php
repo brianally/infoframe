@@ -11,10 +11,37 @@
       </div>
     </div>
     <div class="panel-body">
-      <div class="form-group">Name: {{ $surgeon->name }}</div>
-      <div class="form-group">Email: <a href="mailto:{{ $surgeon->email }}" title="contact this surgeon">{{ $surgeon->email }}</a></div>
-      <div class="form-group">Created: {{ $surgeon->created_at }}</div>
-      <div class="form-group">Updated: {{ $surgeon->updated_at }}</div>
+      <table class="table table-details">
+        <tr>
+          <th>Name:</th>
+          <td>{{ $surgeon->name }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td><a href="mailto:{{ $surgeon->email }}" title="contact this surgeon">{{ $surgeon->email }}</a></td>
+        </tr>
+        <tr>
+          <th>Created:</th>
+          <td>{{ $surgeon->created_at }}</td>
+        </tr>
+        <tr>
+          <th>Updated:</th>
+          <td>{{ $surgeon->updated_at }}</td>
+        </tr>
+        <tr>
+        <tr>
+          <th>Patients:</th>
+          <td>
+            @if ( $surgeon->patients->count() )
+            <ul>
+              @foreach ( $surgeon->patients as $patient )
+              <li>{{ $patient->name }}</li>
+              @endforeach
+            </ul>
+            @endif
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 @endsection

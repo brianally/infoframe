@@ -11,14 +11,40 @@
       </div>
     </div>
     <div class="panel-body">
-      <div class="form-group">Name: {{ $patient->name }}</div>
-      <div class="form-group">Email: <a href="mailto:{{ $patient->email }}" title="contact this patient">{{ $patient->email }}</a></div>
-      <div class="form-group">Phone: {{ $patient->phone }}</div>
-      <div class="form-group">Age: {{ $patient->age }}</div>
-      <div class="form-group">Gender: {{ $genders[ $patient->gender ] }}</div>
-      <div class="form-group">Surgeon: {{ $patient->surgeon->name }}</div>
-      <div class="form-group">Created: {{ $patient->created_at }}</div>
-      <div class="form-group">Updated: {{ $patient->updated_at }}</div>
+      <table class="table table-details">
+        <tr>
+          <th>Name:</th>
+          <td>{{ $patient->name }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td><a href="mailto:{{ $patient->email }}" title="contact this patient">{{ $patient->email }}</a></td>
+        </tr>
+        <tr>
+          <th>Phone:</th>
+          <td>{{ $patient->phone }}</td>
+        </tr>
+        <tr>
+          <th>Age:</th>
+          <td>{{ $patient->age }}</td>
+        </tr>
+        <tr>
+          <th>Gender:</th>
+          <td>{{ $genders[ $patient->gender ] }}</td>
+        </tr>
+        <tr>
+          <th>Surgeon:</th>
+          <td>{{ $patient->surgeon->name }}</td>
+        </tr>
+        <tr>
+          <th>Created:</th>
+          <td>{{ $patient->created_at }}</td>
+        </tr>
+        <tr>
+          <th>Updated:</th>
+          <td>{{ $patient->updated_at }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 @endsection

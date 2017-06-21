@@ -23,3 +23,10 @@
 	@extend .alert;
 	@extend .alert-info;
 }
+
+.table-details {
+  th {
+    width     : 7em;
+    text-align: right;
+  }
+}

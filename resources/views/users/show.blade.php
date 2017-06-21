@@ -11,10 +11,24 @@
       </div>
     </div>
     <div class="panel-body">
-      <div class="form-group">Name: {{ $user->name }}</div>
-      <div class="form-group">Email: <a href="mailto:{{ $user->email }}" title="contact this user">{{ $user->email }}</a></div>
-      <div class="form-group">Created: {{ $user->created_at }}</div>
-      <div class="form-group">Updated: {{ $user->updated_at }}</div>
+      <table class="table table-details">
+        <tr>
+          <th>Name:</th>
+          <td>{{ $user->name }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td><a href="mailto:{{ $user->email }}" title="contact this user">{{ $user->email }}</a></td>
+        </tr>
+        <tr>
+          <th>Created:</th>
+          <td>{{ $user->created_at }}</td>
+        </tr>
+        <tr>
+          <th>Updated:</th>
+          <td>{{ $user->updated_at }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 @endsection
