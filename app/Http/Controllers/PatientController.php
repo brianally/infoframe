@@ -56,7 +56,9 @@ class PatientController extends Controller
     {
         Patient::create( $request->all() );
 
-        return redirect()->route('patients.index')->with('success', 'Patient created');
+        \Session::flash('info', 'Patient created');
+
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -97,7 +99,9 @@ class PatientController extends Controller
     {
         $patient->update( $request->all() );
 
-        return redirect()->route('patients.index')->with('success', 'Patient updated');
+        \Session::flash('info', 'The patient has been updated');
+
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -109,7 +113,9 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $patient->delete();
+
+        \Session::flash('info', 'The patient has been deleted');
         
-        return redirect()->route('patients.index')->with('success', 'The Patient has been deleted');
+        return redirect()->route('patients.index');
     }
 }

@@ -58,7 +58,9 @@ class UserController extends Controller
 
         User::create( $request->all() );
 
-        return redirect()->route('users.index')->with('success', 'User created');
+        \Session::flash('info', 'User created');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -94,7 +96,9 @@ class UserController extends Controller
     {
         $user->update( $request->all() );
 
-        return redirect()->route('users.index')->with('success', 'User updated');
+        \Session::flash('info', 'The user has been updated');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -107,6 +111,8 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted');
+        \Session::flash('info', 'The user has been deleted');
+
+        return redirect()->route('users.index');
     }
 }

@@ -52,7 +52,9 @@ class SurgeonController extends Controller
     {
         Surgeon::create( $request->all() );
 
-        return redirect()->route('surgeons.index')->with('success', 'Surgeon created');
+        \Session::flash('info', 'Surgeon created');
+
+        return redirect()->route('surgeons.index');
     }
 
     /**
@@ -88,7 +90,9 @@ class SurgeonController extends Controller
     {
         $surgeon->update( $request->all() );
 
-        return redirect()->route('surgeons.index')->with('success', 'The surgeon has been updated');
+        \Session::flash('info', 'The surgeon has been updated');
+
+        return redirect()->route('surgeons.index');
     }
 
     /**
@@ -99,8 +103,15 @@ class SurgeonController extends Controller
      */
     public function destroy(Surgeon $surgeon)
     {
+        if ( $surgeon->patients()->count() )
+        {
+          return redirect()->back()->withErrors('Patients for this surgeon must be reassigned first.');
+        }
+
         $surgeon->delete();
 
-        return redirect()->route('surgeons.index')->with('success', 'The surgeon has been deleted');
+        \Session::flash('info', 'The surgeon has been deleted');
+
+        return redirect()->route('surgeons.index');
     }
 }
