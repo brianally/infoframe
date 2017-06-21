@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserCreateRequest;
 use App\User;
@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         // I could not figure out how to get RegisterController working so doing it here
 
-        $request['password'] = bcrypt( $request['password'] );
+        $request['password'] = Hash::make( $request['password'] );
 
         User::create( $request->all() );
 
