@@ -1,12 +1,52 @@
 
-.container > .navbar {
+.container > nav {
+  @extend .navbar;
+  @extend .navbar-default;
   background: url(/img/gplaypattern.png);
+
+  header {
+    @extend .navbar-header;
+  }
 }
 
 .navbar .btn {
   padding: 9px 10px;
-  margin: 5px;
+  margin : 5px;
 }
+
+
+
+.btn {
+  font-weight: 700;
+}
+
+.actions {
+  input,
+  a {
+    @extend .btn;
+    @extend .btn-default;
+
+    &.new-item,
+    &.submit {
+      @extend .btn-success;
+    }
+
+    &.cancel {
+      @extend .btn-danger;
+    }
+  }
+}
+
+.form-delete {
+  display: inline;
+
+  input {
+    @extend .btn;
+    @extend .btn-danger;
+  }
+}
+
+
 
 .panel-heading {
   @extend .clearfix;
@@ -21,14 +61,6 @@
   }
 }
 
-.btn {
-  font-weight: 700;
-}
-
-.form-delete {
-  display: inline;
-}
-
 
 .no-results {
 	@extend .text-center;
@@ -36,7 +68,15 @@
 	@extend .alert-info;
 }
 
+.table-index {
+  @extend .table;
+  @extend .table-striped;
+  @extend .table-bordered;
+}
+
 .table-details {
+  @extend .table;
+
   th {
     width     : 7em;
     text-align: right;

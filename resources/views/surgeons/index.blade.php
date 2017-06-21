@@ -7,7 +7,7 @@
       <h3>Surgeons</h3>
 
       <div class="actions">
-        <a href="{{ route('surgeons.create') }}" class="btn btn-default btn-success" title="create a new Surgeon">New</a>
+        <a href="{{ route('surgeons.create') }}" class="new-item" title="create a new Surgeon">New</a>
       </div>
       
     </div>
@@ -17,7 +17,7 @@
 
       @include ('partials.session-info')
 
-      <table class="table table-striped table-bordered">
+      <table class="table-index">
         <thead>
           <tr>
             <th>Created</th>
@@ -38,15 +38,13 @@
             <td>{{ $surgeon->created_at }}</td>
             <td>{{ $surgeon->name }}</td>
             <td>{{ $surgeon->email }}</td>
-            <td>
-              <a class="btn btn-default"
-              	href="{{ route('surgeons.show', $surgeon->id) }}">View</a>
+            <td class="actions">
+              <a href="{{ route('surgeons.show', $surgeon->id) }}">View</a>
 
-              <a class="btn btn-default"
-              	href="{{ route('surgeons.edit', $surgeon->id) }}">Edit</a>
+              <a href="{{ route('surgeons.edit', $surgeon->id) }}">Edit</a>
               	
               {{ Form::open(['method' => 'DELETE', 'route' => ['surgeons.destroy', $surgeon->id], 'class' => 'form-delete']) }}
-              {{ Form::submit('Remove', ['class' => 'btn btn-danger']) }}
+              {{ Form::submit('Remove') }}
               {{ Form::close() }}
             </td>
           </tr>

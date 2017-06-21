@@ -15,8 +15,8 @@
 </head>
 <body>
     <div id="app" class="container">
-        <nav class="navbar navbar-default">
-          <div class="navbar-header">
+        <nav>
+          <header>
 
               <!-- Collapsed Hamburger -->
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -30,7 +30,7 @@
               <a class="navbar-brand" href="{{ url('/') }}">
                   {{ config('app.name', 'Laravel') }}
               </a>
-          </div>
+          </header>
 
           <div class="collapse navbar-collapse" id="app-navbar-collapse">
               <!-- Left Side Of Navbar -->

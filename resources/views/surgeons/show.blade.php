@@ -7,11 +7,11 @@
       <h3>Surgeon Details</h3>
 
       <div class="actions">
-        <a href="{{ route('surgeons.index') }}" class="btn btn-default" title="back to surgeons list">go back</a>
+        <a href="{{ route('surgeons.index') }}" title="back to surgeons list">go back</a>
       </div>
     </div>
     <div class="panel-body">
-      <table class="table table-details">
+      <table class="table-details">
         <tr>
           <th>Name:</th>
           <td>{{ $surgeon->name }}</td>

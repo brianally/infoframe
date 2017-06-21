@@ -63,7 +63,7 @@
         @endif
       </div>
 
-      <div class="form-group">
-        {{ Form::submit('Add', ['class'=> 'btn btn-success']) }}
-        <a href="{{ route('patients.index') }}" class="btn btn-danger">Cancel</a>
+      <div class="form-group actions">
+        {{ Form::submit('Add', ['class'=> 'submit']) }}
+        <a href="{{ route('patients.index') }}" class="cancel">Cancel</a>
       </div>

@@ -7,11 +7,11 @@
       <h3>User Details</h3>
 
       <div class="actions">
-        <a href="{{ route('users.index') }}" class="btn btn-default" title="back to users list">go back</a>
+        <a href="{{ route('users.index') }}" title="back to users list">go back</a>
       </div>
     </div>
     <div class="panel-body">
-      <table class="table table-details">
+      <table class="table-details">
         <tr>
           <th>Name:</th>
           <td>{{ $user->name }}</td>

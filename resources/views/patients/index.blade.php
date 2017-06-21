@@ -7,7 +7,7 @@
       <h3>Patients</h3>
 
       <div class="actions">
-        <a href="{{ route('patients.create') }}" class="btn btn-default btn-success" title="create a new Patient">New</a>
+        <a href="{{ route('patients.create') }}" class="new-item" title="create a new Patient">New</a>
       </div>
       
     </div>
@@ -17,7 +17,7 @@
 
       @include ('partials.session-info')
 
-      <table class="table table-striped table-bordered">
+      <table class="table-index">
         <thead>
           <tr>
             <th>Created</th>
@@ -40,15 +40,13 @@
             <td>{{ $patient->name }}</td>
             <td>{{ $patient->email }}</td>
             <td>{{ $patient->surgeon->name }}</td>
-            <td>
-              <a class="btn btn-default"
-              	href="{{ route('patients.show', $patient->id) }}">View</a>
+            <td class="actions">
+              <a href="{{ route('patients.show', $patient->id) }}">View</a>
 
-              <a class="btn btn-default"
-              	href="{{ route('patients.edit', $patient->id) }}">Edit</a>
-              	
+              <a href="{{ route('patients.edit', $patient->id) }}">Edit</a>
+              
               {{ Form::open(['method' => 'DELETE', 'route' => ['patients.destroy', $patient->id], 'class' => 'form-delete']) }}
-              {{ Form::submit('Remove', ['class' => 'btn btn-danger']) }}
+              {{ Form::submit('Remove') }}
               {{ Form::close() }}
             </td>
           </tr>
