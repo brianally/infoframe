@@ -1,4 +1,13 @@
 
+.container > .navbar {
+  background: url(/img/gplaypattern.png);
+}
+
+.navbar .btn {
+  padding: 9px 10px;
+  margin: 5px;
+}
+
 .panel-heading {
   @extend .clearfix;
 
@@ -12,6 +21,9 @@
   }
 }
 
+.btn {
+  font-weight: 700;
+}
 
 .form-delete {
   display: inline;

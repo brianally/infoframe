@@ -7,7 +7,7 @@
       <h3>Surgeons</h3>
 
       <div class="actions">
-        <a href="{{ route('surgeons.create') }}" class="btn btn-default btn-success" title="create a new Surgeon">new</a>
+        <a href="{{ route('surgeons.create') }}" class="btn btn-default btn-success" title="create a new Surgeon">New</a>
       </div>
       
     </div>

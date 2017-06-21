@@ -7,7 +7,7 @@
       <h3>Patients</h3>
 
       <div class="actions">
-        <a href="{{ route('patients.create') }}" class="btn btn-default btn-success" title="create a new Patient">new</a>
+        <a href="{{ route('patients.create') }}" class="btn btn-default btn-success" title="create a new Patient">New</a>
       </div>
       
     </div>
