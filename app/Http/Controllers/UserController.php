@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -20,11 +21,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $users = User::orderBy('name', 'ASC')->paginate(5);
+
+        return view('users.index', compact('users'))
+          ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -34,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -45,7 +50,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // I could not figure out how to get RegisterController working so doing it here
+        
+        $this->validate($request, [
+            'name'             => 'required',
+            'email'            => 'required|email',
+            'password'         => 'required|min:6',
+            'password_confirm' => 'same:password'
+        ]);
+
+        $request['password'] = bcrypt( $request['password'] );
+
+        User::create( $request->all() );
+
+        return redirect()->route('users.index')->with('success', 'User created');
     }
 
     /**
@@ -56,7 +74,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -67,7 +85,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -79,7 +97,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name'  => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $user->update( $request->all() );
+
+        return redirect()->route('users.index')->with('success', 'User updated');
     }
 
     /**
@@ -90,6 +115,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted');
     }
 }
