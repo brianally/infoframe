@@ -67,7 +67,9 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        return view( 'patients.show', compact('patient') );
+        $genders  = Patient::$genders;
+        
+        return view( 'patients.show', compact('patient', 'genders') );
     }
 
     /**
@@ -78,7 +80,7 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        $genders = Patient::$genders;
+        $genders  = Patient::$genders;
         $surgeons = Surgeon::pluck('name', 'id');
 
         return view( 'patients.edit', compact('patient', 'genders', 'surgeons') );

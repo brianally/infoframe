@@ -12,7 +12,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">Name: {{ $surgeon->name }}</div>
-      <div class="form-group">Email: {{ $surgeon->email }}</div>
+      <div class="form-group">Email: <a href="mailto:{{ $surgeon->email }}" title="contact this surgeon">{{ $surgeon->email }}</a></div>
       <div class="form-group">Created: {{ $surgeon->created_at }}</div>
       <div class="form-group">Updated: {{ $surgeon->updated_at }}</div>
     </div>
