@@ -13,17 +13,9 @@
     </div>
     <div class="panel-body">
 
-      @if ( $errors->any() )
-        <div class="alert alert-danger">
-          <h4>{{ $errors->first() }}</h4>
-        </div>
-      @endif
+      @include ('partials.error-messages')
 
-      @if ( Session::has('info') )
-        <div class="alert alert-info">
-          <h4>{{ Session::get('info') }}</h4>
-        </div>
-      @endif
+      @include ('partials.session-info')
 
       <table class="table table-striped table-bordered">
         <thead>
