@@ -28,7 +28,7 @@
       </div>
 
       <div class="form-group">
-        {{ Form::submit('Add', ['class'=> 'btn btn-info']) }}
+        {{ Form::submit('Add', ['class'=> 'btn btn-success']) }}
         <a href="{{ route('surgeons.index') }}" class="btn btn-danger">Cancel</a>
       </div>
         

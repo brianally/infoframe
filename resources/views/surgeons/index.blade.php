@@ -16,10 +16,11 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>created</th>
+            <th>Created</th>
             <th>Name</th>
-            <th>email</th>
-            <th>actions</th>
+            <th>Email</th>
+            <th>Patients</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tfoot>
@@ -34,9 +35,15 @@
             <td>{{ $surgeon->created_at }}</td>
             <td>{{ $surgeon->name }}</td>
             <td>{{ $surgeon->email }}</td>
+            <!-- stupid Collection tricks -->
+            <td>{{ implode( ', ', $surgeon->patients->pluck('name')->toArray() ) }}</td>
             <td>
-              <a class="btn btn-default" href="{{ route('surgeons.show', $surgeon->id) }}">View</a>
-              <a class="btn btn-default" href="{{ route('surgeons.edit', $surgeon->id) }}">Edit</a>
+              <a class="btn btn-default"
+              	href="{{ route('surgeons.show', $surgeon->id) }}">View</a>
+
+              <a class="btn btn-default"
+              	href="{{ route('surgeons.edit', $surgeon->id) }}">Edit</a>
+              	
               {{ Form::open(['method' => 'DELETE', 'route' => ['surgeons.destroy', $surgeon->id], 'class' => 'form-delete']) }}
               {{ Form::submit('Remove', ['class' => 'btn btn-danger']) }}
               {{ Form::close() }}
@@ -45,7 +52,7 @@
           @endforeach
         @else
           <tr>
-            <th colspan="4">No surgeons found</th>
+            <th colspan="4" class="no-results">No surgeons found</th>
           </tr>
         @endif
         </tbody>

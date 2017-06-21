@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserCreateRequest;
+use App\User;
 
 class UserController extends Controller
 {
@@ -45,19 +47,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
         // I could not figure out how to get RegisterController working so doing it here
-        
-        $this->validate($request, [
-            'name'             => 'required',
-            'email'            => 'required|email',
-            'password'         => 'required|min:6',
-            'password_confirm' => 'same:password'
-        ]);
 
         $request['password'] = bcrypt( $request['password'] );
 
@@ -91,17 +86,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRequest  $request
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $this->validate($request, [
-            'name'  => 'required',
-            'email' => 'required|email'
-        ]);
-
         $user->update( $request->all() );
 
         return redirect()->route('users.index')->with('success', 'User updated');

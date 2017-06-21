@@ -28,8 +28,8 @@ class Patient extends Model
     ];
 
     public static $genders = [
-        self::MALE => 'Male',
-        self::FEMALE => 'Female',
+        self::MALE        => 'Male',
+        self::FEMALE      => 'Female',
         self::UNSPECIFIED => 'Unspecified'
     ];
   

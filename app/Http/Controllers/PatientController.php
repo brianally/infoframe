@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use Illuminate\Http\Request;
+use App\Http\Requests\PatientRequest;
+use App\Surgeon;
 
 class PatientController extends Controller
 {
@@ -20,11 +22,15 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $patients = Patient::with('surgeon')->orderBy('name', 'ASC')->paginate(5);
+
+        return view( 'patients.index', compact('patients') )
+          ->with('i', ($request->input('page', 1) -1) * 5);
     }
 
     /**
@@ -34,18 +40,23 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $genders = Patient::$genders;
+        $surgeons = Surgeon::pluck('name', 'id');
+
+        return view( 'patients.create', compact('genders', 'surgeons') );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PatientRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
-        //
+        Patient::create( $request->all() );
+
+        return redirect()->route('patients.index')->with('success', 'Patient created');
     }
 
     /**
@@ -56,7 +67,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        return view( 'patients.show', compact('patient') );
     }
 
     /**
@@ -67,19 +78,24 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        $genders = Patient::$genders;
+        $surgeons = Surgeon::pluck('name', 'id');
+
+        return view( 'patients.edit', compact('patient', 'genders', 'surgeons') );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PatientRequest $request
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(PatientRequest $request, Patient $patient)
     {
-        //
+        $patient->update( $request->all() );
+
+        return redirect()->route('patients.index')->with('success', 'Patient updated');
     }
 
     /**
@@ -90,6 +106,8 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+        
+        return redirect()->route('patients.index')->with('success', 'The Patient has been deleted');
     }
 }

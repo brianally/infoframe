@@ -28,4 +28,5 @@ class Surgeon extends Model
     {
         return $this->hasMany('App\Patient');
     }
+
 }

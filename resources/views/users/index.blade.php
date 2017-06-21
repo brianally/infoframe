@@ -16,10 +16,10 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>created</th>
+            <th>Created</th>
             <th>Name</th>
-            <th>email</th>
-            <th>actions</th>
+            <th>Email</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tfoot>
@@ -35,8 +35,12 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>
-              <a class="btn btn-default" href="{{ route('users.show', $user->id) }}">View</a>
-              <a class="btn btn-default" href="{{ route('users.edit', $user->id) }}">Edit</a>
+              <a class="btn btn-default"
+              	href="{{ route('users.show', $user->id) }}">View</a>
+
+              <a class="btn btn-default"
+              	href="{{ route('users.edit', $user->id) }}">Edit</a>
+              	
               {{ Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'class' => 'form-delete']) }}
               {{ Form::submit('Remove', ['class' => 'btn btn-danger']) }}
               {{ Form::close() }}
@@ -45,7 +49,7 @@
           @endforeach
         @else
           <tr>
-            <th colspan="4">No users found</th>
+            <th colspan="4" class="no-results">No users found</th>
           </tr>
         @endif
         </tbody>

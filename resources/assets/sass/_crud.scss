@@ -16,3 +16,10 @@
 .form-delete {
   display: inline;
 }
+
+
+.no-results {
+	@extend .text-center;
+	@extend .alert;
+	@extend .alert-info;
+}

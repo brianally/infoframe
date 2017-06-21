@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Surgeon;
 use Illuminate\Http\Request;
+use App\Http\Requests\SurgeonRequest;
 
 class SurgeonController extends Controller
 {
@@ -25,9 +26,9 @@ class SurgeonController extends Controller
      */
     public function index(Request $request)
     {
-        $surgeons = Surgeon::orderBy('name', 'ASC')->paginate(5);
+        $surgeons = Surgeon::with('patients')->orderBy('name', 'ASC')->paginate(5);
 
-        return view('surgeons.index', compact('surgeons'))
+        return view( 'surgeons.index', compact('surgeons') )
           ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -44,16 +45,11 @@ class SurgeonController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  SurgeonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SurgeonRequest $request)
     {
-        $this->validate($request, [
-						'name'  => 'required',
-						'email' => 'required|email'
-        ]);
-
         Surgeon::create( $request->all() );
 
         return redirect()->route('surgeons.index')->with('success', 'Surgeon created');
@@ -67,7 +63,7 @@ class SurgeonController extends Controller
      */
     public function show(Surgeon $surgeon)
     {
-        return view('surgeons.show', compact('surgeon'));
+        return view( 'surgeons.show', compact('surgeon') );
     }
 
     /**
@@ -78,23 +74,18 @@ class SurgeonController extends Controller
      */
     public function edit(Surgeon $surgeon)
     {
-        return view('surgeons.edit', compact('surgeon'));
+        return view( 'surgeons.edit', compact('surgeon') );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  SurgeonRequest  $request
      * @param  \App\Surgeon  $surgeon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Surgeon $surgeon)
+    public function update(SurgeonRequest $request, Surgeon $surgeon)
     {
-        $this->validate($request, [
-					'name'  => 'required',
-					'email' => 'required|email'
-        ]);
-
         $surgeon->update( $request->all() );
 
         return redirect()->route('surgeons.index')->with('success', 'The surgeon has been updated');
