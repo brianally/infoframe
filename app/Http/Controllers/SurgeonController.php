@@ -20,11 +20,15 @@ class SurgeonController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $surgeons = Surgeon::orderBy('name', 'ASC')->paginate(5);
+
+        return view('surgeons.index', compact('surgeons'))
+          ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -34,7 +38,7 @@ class SurgeonController extends Controller
      */
     public function create()
     {
-        //
+        return view('surgeons.create');
     }
 
     /**
@@ -45,7 +49,14 @@ class SurgeonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+						'name'  => 'required',
+						'email' => 'required|email'
+        ]);
+
+        Surgeon::create( $request->all() );
+
+        return redirect()->route('surgeons.index')->with('success', 'Surgeon created');
     }
 
     /**
@@ -56,7 +67,7 @@ class SurgeonController extends Controller
      */
     public function show(Surgeon $surgeon)
     {
-        //
+        return view('surgeons.show', compact('surgeon'));
     }
 
     /**
@@ -67,7 +78,7 @@ class SurgeonController extends Controller
      */
     public function edit(Surgeon $surgeon)
     {
-        //
+        return view('surgeons.edit', compact('surgeon'));
     }
 
     /**
@@ -79,7 +90,14 @@ class SurgeonController extends Controller
      */
     public function update(Request $request, Surgeon $surgeon)
     {
-        //
+        $this->validate($request, [
+					'name'  => 'required',
+					'email' => 'required|email'
+        ]);
+
+        $surgeon->update( $request->all() );
+
+        return redirect()->route('surgeons.index')->with('success', 'The surgeon has been updated');
     }
 
     /**
@@ -90,6 +108,8 @@ class SurgeonController extends Controller
      */
     public function destroy(Surgeon $surgeon)
     {
-        //
+        $surgeon->delete();
+
+        return redirect()->route('surgeons.index')->with('success', 'The surgeon has been deleted');
     }
 }

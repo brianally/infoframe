@@ -22,7 +22,11 @@
             <th>actions</th>
           </tr>
         </thead>
-        <tfoot></tfoot>
+        <tfoot>
+          <tr>
+            <th colspan="4">{{ $users->render() }}</th>
+          </tr>
+        </tfoot>
         <tbody>
         @if (count($users) > 0)
           @foreach ($users as $user)

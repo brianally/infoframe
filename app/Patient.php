@@ -13,6 +13,20 @@ class Patient extends Model
     const FEMALE      = 'f';
     const UNSPECIFIED = '?';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'gender',
+        'age',
+        'surgeon_id'
+    ];
+
     public static $genders = [
         self::MALE => 'Male',
         self::FEMALE => 'Female',

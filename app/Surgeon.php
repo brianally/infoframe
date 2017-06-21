@@ -10,6 +10,16 @@ class Surgeon extends Model
     use FormatDate;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+    ];
+
+    /**
      * hasMany association
      * 
      * @return App\Patient
