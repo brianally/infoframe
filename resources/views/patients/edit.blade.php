@@ -47,8 +47,9 @@
 
       <div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
         @foreach ( $genders as $key => $val )
-          <label class="radio-inline">
-            <input type="radio" name="gender" value="{{ $key }}"> {{ $val }}
+          <label class="radio-inline" for="gender_{{ $key }}">
+            {{ Form::radio('gender', $key, $patient->gender == $key, ['id' => "gender_${key}"]) }}
+            {{ $val }}            
           </label>
         @endforeach
 
