@@ -54,14 +54,13 @@
 
   h3 { 
     margin: 5px 0;
-    @extend .col-xs-12;
-    @extend .col-sm-6;
+    @extend .col-xs-6;
   }
 
   .actions {
+    margin-top: 4px;
     @extend .text-right;
-    @extend .col-xs-12;
-    @extend .col-sm-6;
+    @extend .col-xs-6;
   }
 }
 

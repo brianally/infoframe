@@ -20,10 +20,10 @@
       <table class="table-index">
         <thead>
           <tr>
-            <th>Created</th>
+            <th class="hidden-xs">Created</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Surgeon</th>
+            <th class="hidden-xs">Email</th>
+            <th class="hidden-xs">Surgeon</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -36,10 +36,10 @@
         @if (count($patients) > 0)
           @foreach ($patients as $patient)
           <tr>
-            <td>{{ $patient->created_at }}</td>
+            <td class="hidden-xs">{{ $patient->created_at }}</td>
             <td>{{ $patient->name }}</td>
-            <td>{{ $patient->email }}</td>
-            <td>{{ $patient->surgeon->name }}</td>
+            <td class="hidden-xs">{{ $patient->email }}</td>
+            <td class="hidden-xs">{{ $patient->surgeon->name }}</td>
             <td class="actions">
               <a href="{{ route('patients.show', $patient->id) }}">View</a>
 

@@ -20,9 +20,9 @@
       <table class="table-index">
         <thead>
           <tr>
-            <th>Created</th>
+            <th class="hidden-xs">Created</th>
             <th>Name</th>
-            <th>Email</th>
+            <th class="hidden-xs">Email</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -35,9 +35,9 @@
         @if (count($users) > 0)
           @foreach ($users as $user)
           <tr>
-            <td>{{ $user->created_at }}</td>
+            <td class="hidden-xs">{{ $user->created_at }}</td>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
+            <td class="hidden-xs">{{ $user->email }}</td>
             <td class="actions">
               <a href="{{ route('users.show', $user->id) }}">View</a>
 
