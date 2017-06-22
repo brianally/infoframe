@@ -4,12 +4,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
 
-      <h3>Patients</h3>
+      <h3>All Patients</h3>
 
       <div class="actions">
         <a href="{{ route('patients.create') }}" class="new-item" title="create a new Patient">New</a>
       </div>
-      
+
     </div>
     <div class="panel-body">
 
