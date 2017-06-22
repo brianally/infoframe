@@ -3,12 +3,9 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\User;
 use Tests\DatabaseSeed;
 use Tests\DefaultUser;
+use App\User;
 
 class AuthTest extends TestCase
 {
