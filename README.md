@@ -22,6 +22,10 @@ The app was created using Laravel Homestead. If running within a Homestead vm, o
 ```shell
 php artisan migrate --seed
 ```
+The default user login credentials are:
+
+username: default@test.net
+password: default
 
 ## License
 
