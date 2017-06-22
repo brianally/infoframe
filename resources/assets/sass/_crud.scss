@@ -25,6 +25,7 @@
   a {
     @extend .btn;
     @extend .btn-default;
+    @extend .btn-sm;
 
     &.new-item,
     &.submit {
@@ -51,21 +52,25 @@
 .panel-heading {
   @extend .clearfix;
 
-  h3 {
-    @extend .col-xs-6;
+  h3 { 
     margin: 5px 0;
+    @extend .col-xs-12;
+    @extend .col-sm-6;
   }
+
   .actions {
-    @extend .col-xs-6;
     @extend .text-right;
+    @extend .col-xs-12;
+    @extend .col-sm-6;
   }
 }
 
 
+
 .no-results {
-	@extend .text-center;
-	@extend .alert;
-	@extend .alert-info;
+  @extend .text-center;
+  @extend .alert;
+  @extend .alert-info;
 }
 
 .table-index {
