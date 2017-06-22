@@ -7,6 +7,12 @@
       <h3>Patient Details</h3>
 
       <div class="actions">
+        <a href="{{ route('patients.edit', $patient->id) }}">Edit</a>
+        
+        {{ Form::open(['method' => 'DELETE', 'route' => ['patients.destroy', $patient->id], 'class' => 'form-delete']) }}
+        {{ Form::submit('Remove') }}
+        {{ Form::close() }}
+
         <a href="{{ route('patients.index') }}" title="back to patients list">go back</a>
       </div>
     </div>
@@ -18,7 +24,8 @@
         </tr>
         <tr>
           <th>Email:</th>
-          <td><a href="mailto:{{ $patient->email }}" title="contact this patient">{{ $patient->email }}</a></td>
+          <td><a href="mailto:{{ $patient->email }}"
+            title="contact this patient">{{ $patient->email }}</a></td>
         </tr>
         <tr>
           <th>Phone:</th>
@@ -34,7 +41,8 @@
         </tr>
         <tr>
           <th>Surgeon:</th>
-          <td>{{ $patient->surgeon->name }}</td>
+          <td><a href="{{ route('surgeons.show', $patient->surgeon->id) }}"
+            title="view this surgeon">{{ $patient->surgeon->name }}</a></td>
         </tr>
         <tr>
           <th>Created:</th>

@@ -17,45 +17,22 @@
 
       @include ('partials.session-info')
 
-      <table class="table-index">
-        <thead>
-          <tr>
-            <th>Created</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th colspan="4">{{ $users->render() }}</th>
-          </tr>
-        </tfoot>
-        <tbody>
-        @if (count($users) > 0)
+      @if (count($users) > 0)
+        <ul>
           @foreach ($users as $user)
-          <tr>
-            <td>{{ $user->created_at }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td class="actions">
-              <a href="{{ route('users.show', $user->id) }}">View</a>
+          
+          <li><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></li>
 
-              <a href="{{ route('users.edit', $user->id) }}">Edit</a>
-              	
-              {{ Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'class' => 'form-delete']) }}
-              {{ Form::submit('Remove') }}
-              {{ Form::close() }}
-            </td>
-          </tr>
           @endforeach
+        </ul>
+
+        {{ $users->render() }}
+        
         @else
-          <tr>
-            <th colspan="4" class="no-results">No users found</th>
-          </tr>
+  
+          <h4 class="no-results">No users found</h4>
+
         @endif
-        </tbody>
-      </table>
     </div>
   </div>
 @endsection

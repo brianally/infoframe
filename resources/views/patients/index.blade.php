@@ -17,47 +17,26 @@
 
       @include ('partials.session-info')
 
-      <table class="table-index">
-        <thead>
-          <tr>
-            <th>Created</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Surgeon</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th colspan="5">{{ $patients->render() }}</th>
-          </tr>
-        </tfoot>
-        <tbody>
-        @if (count($patients) > 0)
-          @foreach ($patients as $patient)
-          <tr>
-            <td>{{ $patient->created_at }}</td>
-            <td>{{ $patient->name }}</td>
-            <td>{{ $patient->email }}</td>
-            <td>{{ $patient->surgeon->name }}</td>
-            <td class="actions">
-              <a href="{{ route('patients.show', $patient->id) }}">View</a>
 
-              <a href="{{ route('patients.edit', $patient->id) }}">Edit</a>
-              
-              {{ Form::open(['method' => 'DELETE', 'route' => ['patients.destroy', $patient->id], 'class' => 'form-delete']) }}
-              {{ Form::submit('Remove') }}
-              {{ Form::close() }}
-            </td>
-          </tr>
-          @endforeach
-        @else
-          <tr>
-            <th colspan="5" class="no-results">No patients found</th>
-          </tr>
-        @endif
-        </tbody>
-      </table>
+      @if (count($patients) > 0)
+
+      <ul>
+        @foreach ($patients as $patient)
+
+          <li><a href="{{ route('patients.show', $patient->id) }}">{{ $patient->name }}</a></li>
+
+        @endforeach
+
+      </ul>
+
+      {{ $patients->render() }}
+
+      @else
+
+        <h4 class="no-results">No patients found</h4>
+
+      @endif
+
     </div>
 
   </div>

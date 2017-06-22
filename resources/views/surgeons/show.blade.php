@@ -7,6 +7,13 @@
       <h3>Surgeon Details</h3>
 
       <div class="actions">
+
+        <a href="{{ route('surgeons.edit', $surgeon->id) }}">Edit</a>
+          
+        {{ Form::open(['method' => 'DELETE', 'route' => ['surgeons.destroy', $surgeon->id], 'class' => 'form-delete']) }}
+        {{ Form::submit('Remove') }}
+        {{ Form::close() }}
+
         <a href="{{ route('surgeons.index') }}" title="back to surgeons list">go back</a>
       </div>
     </div>
@@ -18,7 +25,8 @@
         </tr>
         <tr>
           <th>Email:</th>
-          <td><a href="mailto:{{ $surgeon->email }}" title="contact this surgeon">{{ $surgeon->email }}</a></td>
+          <td><a href="mailto:{{ $surgeon->email }}"
+            title="contact this surgeon">{{ $surgeon->email }}</a></td>
         </tr>
         <tr>
           <th>Created:</th>
@@ -35,7 +43,10 @@
             @if ( $surgeon->patients->count() )
             <ul>
               @foreach ( $surgeon->patients as $patient )
-              <li>{{ $patient->name }}</li>
+
+              <li><a href="{{ route('patients.show', $patient->id) }}"
+                title="view this patient">{{ $patient->name }}</a></li>
+
               @endforeach
             </ul>
             @endif

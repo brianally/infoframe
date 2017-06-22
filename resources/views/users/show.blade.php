@@ -7,7 +7,14 @@
       <h3>User Details</h3>
 
       <div class="actions">
-        <a href="{{ route('users.index') }}" title="back to users list">go back</a>
+        <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+          
+        {{ Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'class' => 'form-delete']) }}
+        {{ Form::submit('Remove') }}
+        {{ Form::close() }}
+              
+        <a href="{{ route('users.index') }}"
+          title="back to users list">go back</a>
       </div>
     </div>
     <div class="panel-body">
@@ -18,7 +25,8 @@
         </tr>
         <tr>
           <th>Email:</th>
-          <td><a href="mailto:{{ $user->email }}" title="contact this user">{{ $user->email }}</a></td>
+          <td><a href="mailto:{{ $user->email }}"
+            title="contact this user">{{ $user->email }}</a></td>
         </tr>
         <tr>
           <th>Created:</th>
