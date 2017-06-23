@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UsersTableSeeder extends Seeder
@@ -18,7 +19,7 @@ class UsersTableSeeder extends Seeder
 	      User::create([
 		        'name'           => 'Default User',
 		        'email'          => 'default@test.net',
-		        'password'       => bcrypt('default'),
+		        'password'       => Hash::make('default'),
 		        'remember_token' => str_random(10),
 		        'created_at'     => Carbon::now()->format('Y-m-d H:m:i')
 	      ]);
