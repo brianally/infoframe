@@ -68,7 +68,7 @@ class PatientControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function it_fetches_user_for_edit()
+    public function it_fetches_patient_for_edit()
     {
         $user    = $this->getDefaultUser();
         $patient = factory(\App\Patient::class)->create();
