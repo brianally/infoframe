@@ -40,14 +40,16 @@ class UserControllerTest extends TestCase
          * When the rule is manually added the tests pass.
          *
          * UPDATE
+         *
          * I had commented the last 5 items in the provider to
          * avoid failing on bad passwords. But I've sorted out the
-         * problem. I've updated the FormRequest to check
-         * $this->server->get('REQUEST_METHOD') if $this->method is null.
+         * problem. I've updated UserRequest to check
+         * $this->server('REQUEST_METHOD') if $this->method is null.
+         * I had missed the server() method before while I was off
+         * trying to understand how the request differs in testing.
          *
-         * Fugly but it works. I guess it's not a bug but I'll
-         * continue to look into why it and several other members
-         * are null in tests.
+         * I presume it's not a bug but I'll continue to look into why
+         * it and several other members are null in tests.
          *
          */
     }
