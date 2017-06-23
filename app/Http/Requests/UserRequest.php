@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
         ];
 
         $isPost = ( !is_null($this->method) && $this->method === 'POST' )
-            || $this->server->get('REQUEST_METHOD') === 'POST';
+            || $this->server('REQUEST_METHOD') === 'POST';
 
         if ( $isPost ) {
           $rules['password'] = 'required|min:6|confirmed';
