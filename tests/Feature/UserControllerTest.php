@@ -22,11 +22,11 @@ class UserControllerTest extends TestCase
             ['New User', '@test.net', 'newuserpass', 'newuserpass', false],
             ['New User', 'newusertest.net', 'newuserpass', 'newuserpass', false],
             ['New User', 'newuser@test', 'newuserpass', 'newuserpass', false],
-            // ['New User', 'newuser@test.net', 'pass', 'pass', false],
-            // ['New User', 'newuser@test.net', 'newuserpass', null, false],
-            // ['New User', 'newuser@test.net', 'newuserpass', '', false],
-            // ['New User', 'newuser@test.net', null, null, false],
-            // ['New User', 'newuser@test.net', '', '', false]
+            ['New User', 'newuser@test.net', 'pass', 'pass', false],
+            ['New User', 'newuser@test.net', 'newuserpass', null, false],
+            ['New User', 'newuser@test.net', 'newuserpass', '', false],
+            ['New User', 'newuser@test.net', null, null, false],
+            ['New User', 'newuser@test.net', '', '', false]
         ];
 
         /* Found a bug?

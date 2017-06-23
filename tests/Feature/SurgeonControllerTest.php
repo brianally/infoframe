@@ -54,7 +54,7 @@ class SurgeonControllerTest extends TestCase
             ->get('/surgeons/' . $surgeon->id);
 
         $response->assertSee('Surgeon Details');
-        $response->assertSee($surgeon->name);
+        $response->assertSee($surgeon->email);
     }
 
 
@@ -71,7 +71,7 @@ class SurgeonControllerTest extends TestCase
             ->get('/surgeons/' . $surgeon-> id . '/edit');
 
         $response->assertSee('Edit Surgeon');
-        $response->assertSee($surgeon->name);
+        $response->assertSee($surgeon->email);
     }
 
 

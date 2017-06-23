@@ -60,7 +60,7 @@ class PatientControllerTest extends TestCase
             ->get('/patients/' . $patient->id);
 
         $response->assertSee('Patient Details');
-        $response->assertSee($patient->name);
+        $response->assertSee($patient->email);
     }
 
 
@@ -77,7 +77,7 @@ class PatientControllerTest extends TestCase
             ->get('/patients/' . $patient->id . '/edit');
 
         $response->assertSee('Edit Patient');
-        $response->assertSee($patient->name);
+        $response->assertSee($patient->email);
     }
 
 
