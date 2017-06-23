@@ -28,8 +28,10 @@ class UserRequest extends FormRequest
           'email' => 'required|email'
         ];
 
-        if ( $this->method === 'POST' ) {
+        $isPost = ( !is_null($this->method) && $this->method === 'POST' )
+            || $this->server->get('REQUEST_METHOD') === 'POST';
 
+        if ( $isPost ) {
           $rules['password'] = 'required|min:6|confirmed';
         }
 
