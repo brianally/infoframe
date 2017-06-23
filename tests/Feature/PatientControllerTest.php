@@ -90,7 +90,7 @@ class PatientControllerTest extends TestCase
     {
         $user = $this->getDefaultUser();
 
-        $patientData = [
+        $data = [
             'name'       => $name,
             'email'      => $email,
             'phone'      => $phone,
@@ -100,7 +100,7 @@ class PatientControllerTest extends TestCase
         ];
 
         $response = $this->actingAs($user)
-            ->post('/patients', $patientData);
+            ->post('/patients', $data);
 
         if ( $expected ) {
             $this->assertDatabaseHas('patients', ['name' => $name]);
